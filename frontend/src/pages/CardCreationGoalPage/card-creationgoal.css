@@ -1,0 +1,53 @@
+.detail-goals-block{
+    height: calc(100% - 168px);
+}
+
+
+.gradient-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: transparent;
+  }
+  
+  /* WebKit Slider Thumb */
+  .gradient-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px #999 solid;
+    background: #000;
+    cursor: pointer;
+  }
+  
+  .gradient-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #000;
+    cursor: pointer;
+  }
+  
+  /* WebKit Slider Track */
+  .gradient-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to right, rgba(0, 0, 255, 0.1) 0%, rgba(0, 0, 255, 1) 100%);
+    border-radius: 10px;
+  }
+  
+  .gradient-range::-moz-range-track {
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to right, rgba(0, 0, 255, 0.1) 0%, rgba(0, 0, 255, 1) 100%);
+    border-radius: 10px;
+  }
+  
+  /* Removes the default focus outline */
+  .gradient-range:focus {
+    outline: none;
+  }
+  
