@@ -74,9 +74,11 @@ function CardCreationMainPage() {
         setWorkingTask("STORY_REVIEW"); // 第三页
         break;
       case "STORY_REVIEW":
+        handleLastNextClick()
         setWorkingTask("STORY_EDITING"); // 第四页
         break;
       case "STORY_EDITING":
+        console.log(4)
         setWorkingTask("IMAGE_GENERATION"); // 第五页
         break;
       default:
@@ -182,7 +184,6 @@ function CardCreationMainPage() {
                   openPrompt={block.openPrompt}
                   title={"Objective"}
                   onAdd={() => {
-                    console.log("add pressed")
                     addMessageBlock(index);
                     insertObjective(index);}
                   }
@@ -212,7 +213,7 @@ function CardCreationMainPage() {
     );
   };
 
-  const handleSubmit=async (e)=>{
+  const handleGenerateBtnClick=async (e)=>{
     const userInputs={      presentingProblem,
       goal,
       objectives,
@@ -226,7 +227,38 @@ function CardCreationMainPage() {
       specialLangNeed,
       words
       }
-    const response= await fetch('/api/stories/createByChatGPT',{
+    await fetch('/api/stories/createByChatGPT',{
+    method: 'POST',
+        body: JSON.stringify(userInputs),
+        headers:{
+            'Content-Type':'application/json'
+        }
+    })
+    .then(response=>response.json())
+    .then(data=>{
+      storyScenarioEditor.update(() => {
+        const root = $getRoot();
+        root.clear();
+        root.append($createParagraphNode().append($createTextNode (data.content)));
+      });
+    })
+  }
+
+  const handleLastNextClick=async (e)=>{
+    const userInputs={      presentingProblem,
+      goal,
+      objectives,
+      when,
+      where,
+      who,
+      what,
+      how,
+      why,
+      storyScenario,
+      specialLangNeed,
+      words
+      }
+    await fetch('/api/stories/createByChatGPT',{
     method: 'POST',
         body: JSON.stringify(userInputs),
         headers:{
@@ -300,7 +332,7 @@ function CardCreationMainPage() {
               className="inline-block btn-white-2 font-monofett text-h4 shadow-card"
               onClick={()=>{
                 goNextStep();
-                handleSubmit()
+                handleGenerateBtnClick()
                 }}
             >
               GENERATE
