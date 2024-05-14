@@ -52,9 +52,12 @@ npm run dev
 To activate the connection with the LLM (Large Language Model) model, follow these steps:
 
 1. Install Ollama from https://ollama.com/.
-2. Open a terminal and run the following command:
+2. Open a terminal and run the following command to download the llama3 model:
 ```
 ollama run llama3
 ```
-3. After the model has been downloaded, close the terminal.
+3. After the model has been downloaded, close the terminal, open a new terminal and run
+ ```
+ollama run serve
+```
 
