@@ -58,6 +58,6 @@ ollama run llama3
 ```
 3. After the model has been downloaded, close the terminal, open a new terminal and run
  ```
-ollama run serve
+ollama serve
 ```
 
