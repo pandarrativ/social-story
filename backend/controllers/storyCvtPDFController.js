@@ -76,7 +76,7 @@ const formatPdf = (htmlStr) => {
     const $ = cheerio.load(htmlStr);
     // Replace '\n\n' with <p> tags
     $('body').html($('body').html().replace(/\n\n/g, '</p><p class="PlaygroundEditorTheme__paragraph" dir="ltr">'));
-    
+
     $('p.PlaygroundEditorTheme__paragraph').each((index, element) => {
         const text = $(element).text().trim();
         if (!text) {
@@ -94,8 +94,6 @@ const formatPdf = (htmlStr) => {
 
     // Get the modified HTML content
     const modifiedHtml = $.html();
-
-    console.log(modifiedHtml);
 
     // Combining all sections
     const newHtmlContent = `${header}\n${imageAndText}\n${objective}\n${modifiedHtml}`;
