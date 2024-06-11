@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const storyRoutes = require("./routes/storyRoutes");
 const vocabularyRoutes = require("./routes/vocabularyRoutes");
 const storyCvtPDFRoutes=require("./routes/storyCvtPDFRoutes")
+const imageRoutes=require("./routes/imageRoutes")
 const app = express();
 
 // 使用 JSON 解析器
@@ -16,5 +17,6 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/stories", storyRoutes)
 app.use("/api/vocabularies", vocabularyRoutes)
 app.use("/api/storyCvtPDF", storyCvtPDFRoutes)
+app.use("/api/images", imageRoutes)
 
 module.exports = app;

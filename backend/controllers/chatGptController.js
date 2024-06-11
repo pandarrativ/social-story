@@ -28,7 +28,6 @@ exports.getResponseFromChatGPT = async (chatHistory, prompt) => {
       })
     });
     const data = await response.json();
-    console.log(data)
     chatHistory.push(['user',prompt]);
     chatHistory.push(['AI Model',data.response])
     return data.response;

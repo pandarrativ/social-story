@@ -579,8 +579,8 @@ function CardCreationMainPage() {
   function PDFDownloadButton()  {
     const downloadPDF =  ()=> {
       pdfEditor.update( async () => {
-        const html= $generateHtmlFromNodes(pdfEditor,  null);;
-        await fetch('/api/storyCvtPDF/cvt', {
+        const html= $generateHtmlFromNodes(pdfEditor,  null);
+        await fetch('/api/storyCvtPDF', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
