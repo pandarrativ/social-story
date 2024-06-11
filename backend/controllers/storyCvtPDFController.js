@@ -6,9 +6,9 @@ const path=require('path')
 
 
 exports.storyConvertPDF =async (req, res) => {
-    const htmlContent = formatPdf(req.body.html);
-    fs.writeFileSync('output.html', htmlContent);
     const options = { format: 'Letter' };
+    const htmlContent = formatPdf(req.body.html,req.body.storyScenario,req.body.objectives);
+
 
     // Generate PDF from HTML content
     pdf.create(htmlContent, options).toBuffer(function(err, buffer) {
@@ -40,7 +40,7 @@ const imageToBase64 = (filePath) => {
 };
 
 
-const formatPdf = (htmlStr) => {
+const formatPdf = (htmlStr,storyScenario,objectives) => {
 
     // Convert images to Base64
     const headerBase64 = imageToBase64('assets/imgs/headers.png');
@@ -59,8 +59,8 @@ const formatPdf = (htmlStr) => {
             <img src="${nerdBase64}" style="max-width: 80px; max-height: 80px;">
         </td>
         <td style="font-size: 24px; font-family: Kodchasan; padding-left: 10px;">
-            <div style="margin-bottom: 10px;">Student</div>
-            <div>Scenario</div>
+            <div style="margin-bottom: 10px;">Student: </div>
+            <div>Scenario: ${storyScenario}</div>
         </td>
     </tr>
 </table>
@@ -71,7 +71,7 @@ const formatPdf = (htmlStr) => {
 
     // Creating the objective section
     const objective = `
-    <div style="background-color: #C0CAE2; padding: 10px; color: black; font-size: 20px; font-family: Kodchasan; text-align: left; margin: 15px 30px;">Objective</div>
+    <div style="background-color: #C0CAE2; padding: 10px; color: black; font-size: 13px; font-family: Kodchasan; text-align: left; margin: 15px 30px;">Objectives: ${objectives}</div>
     `;
     const $ = cheerio.load(htmlStr);
     // Replace '\n\n' with <p> tags

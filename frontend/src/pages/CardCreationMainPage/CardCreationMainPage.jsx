@@ -239,7 +239,6 @@ function CardCreationMainPage() {
         const root = $getRoot();
         root.clear();
         root.append($createParagraphNode().append($createTextNode (data.content)));
-        console.log($generateHtmlFromNodes(pdfEditor,  null));
       });
     })
   }
@@ -585,7 +584,7 @@ function CardCreationMainPage() {
           headers: {
               'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ html }),
+          body: JSON.stringify({ html ,storyScenario,objectives}),
       })
       .then(response => response.blob())
       .then(blob => {
