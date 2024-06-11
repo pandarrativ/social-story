@@ -97,7 +97,5 @@ const formatPdf = (htmlStr) => {
 
     // Combining all sections
     const newHtmlContent = `${header}\n${imageAndText}\n${objective}\n${modifiedHtml}`;
-    // Save the result to a file
-    fs.writeFileSync('output.html', newHtmlContent);
     return newHtmlContent;
 }
